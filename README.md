@@ -1,0 +1,3 @@
+# Developer Notes
+
+This is a repository to consolidate relevant information regarding technologies that I tend to use. I expect this to grow continuously, covering initial setup of projects and/or fundamental commands to perform common actions. Information will derive from training material, original documentation, and personal experience troubleshooting projects. This can also be an appropriate location to note nuances between various technologies as applicable.

@@ -60,17 +60,17 @@ NOTE: New databases cannot be created if TEMPLATE1 is being accessed. Have all u
 
 ### To Create a Template Database
 ```
-CREATE DATABASE supertemplate;
+mydatabase=# CREATE DATABASE supertemplate;
 
-CREATE TABLE supertable ();
+mydatabase=# CREATE TABLE supertable ();
 
-CREATE DATABASE superdatabase WITH TEMPLATE supertemplate;
+mydatabase=# CREATE DATABASE superdatabase WITH TEMPLATE supertemplate;
 -- this will create a new database with the supertemplate which includes the supertable
 ```
 
 ### To Create a Database
 ```
-CREATE DATABASE name
+mydatabase=# CREATE DATABASE name
   [ [ WITH ] [ OWNER [=] user_name ]
     [ TEMPLATE [=] template ]
     [ ENCODING [=] encoding ]
@@ -111,7 +111,7 @@ Roles have attributes and privileges
 - PASSWORD
 
 ```
-CREATE ROLE readonly WITH LOGIN ENCRYPTED PASSWORD 'readonly';
+mydatabase=# CREATE ROLE readonly WITH LOGIN ENCRYPTED PASSWORD 'readonly';
 ```
 
 View Roles:
@@ -119,3 +119,41 @@ View Roles:
 mydatabase=# \du
 ```
 NOTE: by default, only creator of the database and superuser has access to the database objects
+
+Create User:
+```
+mydatabase=# CREATE USER test_user WITH LOGIN ENCRYPTED PASSWORD 'password';
+```
+
+Note: You can also create a role within the CLI without being logged into postgres.
+```
+createuser --interactive
+```
+However, if you want to add a password to this role, you'll need to log into postgres and run:
+```
+mydatabase=# ALTER ROLE interactive_user_name WITH ENCRYPTED PASSWORD 'password';
+```
+
+Login method of postgres is set to 'Trust' by default. Modify the following files to enable password encryption.
+- pg_hba.conf
+- postgresql.conf
+
+Find the path to these files by running the following commands:
+For authentication connection methods...
+```
+mydatabase=# show hba_file;
+/../pg_hba.conf
+```
+General configuration of PostgreSQL...
+```
+mydatabase=# show config_file;
+/../postgresql.conf
+```
+
+### Granting Privileges
+
+```
+GRANT ALL PRIVILEGES ON <table> TO <user>;
+GRANT ALL ON ALL TABLES [IN SCHEMA <schema>] TO <user>;
+GRANT [SELECT, UPDATE, INSERT, ...] ON <table> [IN SCHEMA <schema>] TO <user>;
+```
