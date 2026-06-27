@@ -1,5 +1,6 @@
 # PostgreSQL Notes
 Personal notes for creating and accessing PostgreSQL databases.
+Official documentation found here: https://www.postgresql.org/docs/
 
 ## Traditional Commands
 - Data Definition Language (DDL)
@@ -114,15 +115,26 @@ Roles have attributes and privileges
 mydatabase=# CREATE ROLE readonly WITH LOGIN ENCRYPTED PASSWORD 'readonly';
 ```
 
-View Roles:
+### View Roles
 ```
 mydatabase=# \du
 ```
 NOTE: by default, only creator of the database and superuser has access to the database objects
 
-Create User:
+### Create Role
+```
+mydatabase=# CREATE ROLE employee_read;
+mydatabase=# GRANT SELECT ON ALL TABLES IN SCHEMA public TO employee_read;
+```
+
+### Create User
 ```
 mydatabase=# CREATE USER test_user WITH LOGIN ENCRYPTED PASSWORD 'password';
+```
+
+### Add Role
+```
+mydatabase=# GRANT employee_read TO test_user;
 ```
 
 Note: You can also create a role within the CLI without being logged into postgres.
@@ -157,3 +169,12 @@ GRANT ALL PRIVILEGES ON <table> TO <user>;
 GRANT ALL ON ALL TABLES [IN SCHEMA <schema>] TO <user>;
 GRANT [SELECT, UPDATE, INSERT, ...] ON <table> [IN SCHEMA <schema>] TO <user>;
 ```
+
+## Data Types
+
+- Numeric Types
+- Arrays
+- Character Types
+- Date/Time Types
+- Boolean Types
+- UUID Type
