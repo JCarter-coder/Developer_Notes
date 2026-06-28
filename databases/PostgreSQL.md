@@ -194,4 +194,4 @@ GRANT [SELECT, UPDATE, INSERT, ...] ON <table> [IN SCHEMA <schema>] TO <user>;
 
 - text[]
 - float4[]
-- <data type>[]
+- \<Data Type\>[]
