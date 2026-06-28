@@ -178,3 +178,20 @@ GRANT [SELECT, UPDATE, INSERT, ...] ON <table> [IN SCHEMA <schema>] TO <user>;
 - Date/Time Types
 - Boolean Types
 - UUID Type
+
+### Character Types
+
+- char(N): fixed length with space padding
+- varchar(N): variable length with no padding
+- text: unlimited length text
+
+### Numeric Types
+
+- integers: smallint, int, bigint
+- floating point: float4, float8, decimal
+
+### Arrays
+
+- text[]
+- float4[]
+- <data type>[]
